@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юра Мутистика - Графический дизайнер</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #111;
+            border-radius: 15px;
+            margin: 20px;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+        }
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .project {
+            background-color: #222;
+            border: 1px solid #444;
+            margin: 5px;
+            padding: 5px;
+            height: 100%;
+            max-height: 300px;
+            box-sizing: border-box;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            border-radius: 15px;
+        }
+        .project:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        .project img {
+            max-height: 200px;
+	    width: auto;
+            border-radius: 15px;
+        }
+        .project h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .project p {
+            font-size: 1em;
+        }
+        .info {
+            background-color: #111;
+            padding: 50px 20px;
+            text-align: left;
+            border-radius: 15px;
+            margin: 20px;
+        }
+        .info h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .info p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+        .info img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #111;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .tab.active {
+            background-color: #333;
+        }
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .info h2 {
+                font-size: 1.5em;
+            }
+            .info p {
+                font-size: 1em;
+            }
+        }
+		 .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: 5% auto;
+            display: block;
+            width: 100%;
+            max-width: 800px;
+        }
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+	
+    </style>
+</head>
+<body>
+    <header>
+        <h1>юра мути́стика</h1>
+        <p>графический дизайнер и просто человек, любящий творчество</p>
+    </header>
+    <section>
+        <h2>Моё портфолио</h2>
+		
+        <div class="tabs">
+            <div class="tab" onclick="showProjects('2023')">2023</div>
+            <div class="tab" onclick="showProjects('2022')">2022</div>
+            <div class="tab" onclick="showProjects('2021')">2021</div>
+			<div class="tab" onclick="showProjects('2020')">2020</div>
+        </div>
+		
+        <div class="projects" id="projects-2023" style="display: none;">
+			<div class="project" onclick="openModal('images/2023/1.png')">
+                <img src="images\2023\1.png" alt="Проект 2023-1">
+            </div>
+			<div class="project" onclick="openModal('images/2023/2.png')">
+                <img src="images\2023\2.png" alt="Проект 2023-2">
+            </div>
+			<div class="project" onclick="openModal('images/2023/3.png')">
+                <img src="images\2023\3.png" alt="Проект 2023-3">
+            </div>
+			<div class="project" onclick="openModal('images/2023/4.png')">
+                <img src="images\2023\4.png" alt="Проект 2023-4">
+            </div>
+			<div class="project" onclick="openModal('images/2023/5.png')">
+                <img src="images\2023\5.png" alt="Проект 2023-5">
+            </div>
+        </div>
+		
+        <div class="projects" id="projects-2022" style="display: none;">
+            <div class="project" onclick="openModal('images/2022/1.jpg')">
+                <img src="images\2022\1.jpg" alt="Проект 2022-1">
+            </div>
+			<div class="project" onclick="openModal('images/2022/2.png')">
+                <img src="images\2022\2.png" alt="Проект 2022-2">
+            </div>
+			<div class="project" onclick="openModal('images/2022/3.png')">
+                <img src="images\2022\3.png" alt="Проект 2022-3">
+            </div>
+			<div class="project" onclick="openModal('images/2022/4.png')">
+                <img src="images\2022\4.png" alt="Проект 2022-4">
+            </div>
+			<div class="project" onclick="openModal('images/2022/5.png')">
+                <img src="images\2022\5.png" alt="Проект 2022-5">
+            </div>
+			<div class="project" onclick="openModal('images/2022/6.png')">
+                <img src="images\2022\6.png" alt="Проект 2022-6">
+            </div>
+			<div class="project" onclick="openModal('images/2022/7.jpg')">
+                <img src="images\2022\7.jpg" alt="Проект 2022-7">
+            </div>
+			<div class="project" onclick="openModal('images/2022/8.png')">
+                <img src="images\2022\8.png" alt="Проект 2022-8">
+            </div>
+			<div class="project" onclick="openModal('images/2022/9.png')">
+                <img src="images\2022\9.png" alt="Проект 2022-9">
+            </div>
+			<div class="project" onclick="openModal('images/2022/10.png')">
+                <img src="images\2022\10.png" alt="Проект 2022-10">
+            </div>
+			<div class="project" onclick="openModal('images/2022/11.png')">
+                <img src="images\2022\11.png" alt="Проект 2022-11">
+            </div>
+			<div class="project" onclick="openModal('images/2022/12.png')">
+                <img src="images\2022\12.png" alt="Проект 2022-12">
+            </div>
+			<div class="project" onclick="openModal('images/2022/13.jpg')">
+                <img src="images\2022\13.jpg" alt="Проект 2022-13">
+            </div>
+			<div class="project" onclick="openModal('images/2022/14.png')">
+                <img src="images\2022\14.png" alt="Проект 2022-14">
+            </div>
+			<div class="project" onclick="openModal('images/2022/15.png')">
+                <img src="images\2022\15.png" alt="Проект 2022-15">
+            </div>
+			<div class="project" onclick="openModal('images/2022/16.png')">
+                <img src="images\2022\16.png" alt="Проект 2022-16">
+            </div>
+			<div class="project" onclick="openModal('images/2022/17.png')">
+                <img src="images\2022\17.png" alt="Проект 2022-17">
+            </div>
+			<div class="project" onclick="openModal('images/2022/20.png')">
+                <img src="images\2022\20.png" alt="Проект 2022-20">
+            </div>
+			<div class="project" onclick="openModal('images/2022/19.png')">
+                <img src="images\2022\19.png" alt="Проект 2022-19">
+            </div>
+			<div class="project" onclick="openModal('images/2022/18.jpg')">
+                <img src="images\2022\18.jpg" alt="Проект 2022-18">
+            </div>
+			<div class="project" onclick="openModal('images/2022/21.png')">
+                <img src="images\2022\21.png" alt="Проект 2022-21">
+            </div>
+			<div class="project" onclick="openModal('images/2022/22.png')">
+                <img src="images\2022\22.png" alt="Проект 2022-22">
+            </div>
+			<div class="project" onclick="openModal('images/2022/23.jpg')">
+                <img src="images\2022\23.jpg" alt="Проект 2022-23">
+            </div>
+			<div class="project" onclick="openModal('images/2022/24.png')">
+                <img src="images\2022\24.png" alt="Проект 2022-24">
+            </div>
+			<div class="project" onclick="openModal('images/2022/25.png')">
+                <img src="images\2022\25.png" alt="Проект 2022-25">
+            </div>
+			<div class="project" onclick="openModal('images/2022/26.png')">
+                <img src="images\2022\26.png" alt="Проект 2022-26">
+            </div>
+			<div class="project" onclick="openModal('images/2022/27.png')">
+                <img src="images\2022\27.png" alt="Проект 2022-27">
+            </div>
+			<div class="project" onclick="openModal('images/2022/28.png')">
+                <img src="images\2022\28.png" alt="Проект 2022-28">
+            </div>
+			<div class="project" onclick="openModal('images/2022/29.png')">
+                <img src="images\2022\29.png" alt="Проект 2022-29">
+            </div>
+			<div class="project" onclick="openModal('images/2022/30.png')">
+                <img src="images\2022\30.png" alt="Проект 2022-30">
+            </div>
+			<div class="project" onclick="openModal('images/2022/31.png')">
+                <img src="images\2022\31.png" alt="Проект 2022-31">
+            </div>
+			<div class="project" onclick="openModal('images/2022/32.png')">
+                <img src="images\2022\32.png" alt="Проект 2022-32">
+            </div>
+			<div class="project" onclick="openModal('images/2022/33.png')">
+                <img src="images\2022\33.png" alt="Проект 2022-33">
+            </div>
+			<div class="project" onclick="openModal('images/2022/34.png')">
+                <img src="images\2022\34.png" alt="Проект 2022-34">
+            </div>
+			<div class="project" onclick="openModal('images/2022/35.png')">
+                <img src="images\2022\35.png" alt="Проект 2022-35">
+            </div>
+			<div class="project" onclick="openModal('images/2022/36.jpg')">
+                <img src="images\2022\36.jpg" alt="Проект 2022-36">
+            </div>
+        </div>
+		
+        <div class="projects" id="projects-2021" style="display: none;">
+            <div class="project" onclick="openModal('images/2021/1.png')">
+                <img src="images\2021\1.png" alt="Проект 2021-1">
+            </div>
+            <div class="project" onclick="openModal('images/2021/2.png')">
+                <img src="images\2021\2.png" alt="Проект 2021-2">
+            </div>
+			 <div class="project" onclick="openModal('images/2021/3.png')">
+                <img src="images\2021\3.png" alt="Проект 2021-3">
+            </div>
+			<div class="project" onclick="openModal('images/2021/4.png')">
+                <img src="images\2021\4.png" alt="Проект 2021-4">
+            </div>
+			<div class="project" onclick="openModal('images/2021/5.png')">
+                <img src="images\2021\5.png" alt="Проект 2021-5">
+            </div>
+			<div class="project" onclick="openModal('images/2021/6.png')">
+                <img src="images\2021\6.png" alt="Проект 2021-6">
+            </div>
+			<div class="project" onclick="openModal('images/2021/7.png')">
+                <img src="images\2021\7.png" alt="Проект 2021-7">
+            </div>
+			<div class="project" onclick="openModal('images/2021/8.jpg')">
+                <img src="images\2021\8.jpg" alt="Проект 2021-8">
+            </div>
+			<div class="project" onclick="openModal('images/2021/9.jpg')">
+                <img src="images\2021\9.jpg" alt="Проект 2021-9">
+            </div>
+			<div class="project" onclick="openModal('images/2021/10.png')">
+                <img src="images\2021\10.png" alt="Проект 2021-10">
+            </div>
+			<div class="project" onclick="openModal('images/2021/11.png')">
+                <img src="images\2021\11.png" alt="Проект 2021-11">
+            </div>
+			<div class="project" onclick="openModal('images/2021/12.jpg')">
+                <img src="images\2021\12.jpg" alt="Проект 2021-12">
+            </div>
+			<div class="project" onclick="openModal('images/2021/13.png')">
+                <img src="images\2021\13.png" alt="Проект 2021-13">
+            </div>
+			<div class="project" onclick="openModal('images/2021/14.png')">
+                <img src="images\2021\14.png" alt="Проект 2021-14">
+            </div>
+			<div class="project" onclick="openModal('images/2021/15.png')">
+                <img src="images\2021\15.png" alt="Проект 2021-15">
+            </div>
+			<div class="project" onclick="openModal('images/2021/16.png')">
+                <img src="images\2021\16.png" alt="Проект 2021-16">
+            </div>
+			<div class="project" onclick="openModal('images/2021/17.png')">
+                <img src="images\2021\17.png" alt="Проект 2021-17">
+            </div>
+			<div class="project" onclick="openModal('images/2021/18.png')">
+                <img src="images\2021\18.png" alt="Проект 2021-18">
+            </div>
+			<div class="project" onclick="openModal('images/2021/19.png')">
+                <img src="images\2021\19.png" alt="Проект 2021-19">
+            </div>
+			<div class="project" onclick="openModal('images/2021/20.png')">
+                <img src="images\2021\20.png" alt="Проект 2021-20">
+            </div>
+			<div class="project" onclick="openModal('images/2021/21.png')">
+                <img src="images\2021\21.png" alt="Проект 2021-21">
+            </div>
+			<div class="project" onclick="openModal('images/2021/22.png')">
+                <img src="images\2021\22.png" alt="Проект 2021-22">
+            </div>
+			<div class="project" onclick="openModal('images/2021/23.png')">
+                <img src="images\2021\23.png" alt="Проект 2021-23">
+            </div>
+			<div class="project" onclick="openModal('images/2021/24.png')">
+                <img src="images\2021\24.png" alt="Проект 2021-24">
+            </div>
+			<div class="project" onclick="openModal('images/2021/25.png')">
+                <img src="images\2021\25.png" alt="Проект 2021-25">
+            </div>
+			<div class="project" onclick="openModal('images/2021/26.png')">
+                <img src="images\2021\26.png" alt="Проект 2021-26">
+            </div>
+			<div class="project" onclick="openModal('images/2021/27.png')">
+                <img src="images\2021\27.png" alt="Проект 2021-27">
+            </div>
+			<div class="project" onclick="openModal('images/2021/28.png')">
+                <img src="images\2021\28.png" alt="Проект 2021-28">
+            </div>
+			<div class="project" onclick="openModal('images/2021/29.png')">
+                <img src="images\2021\29.png" alt="Проект 2021-29">
+            </div>
+			<div class="project" onclick="openModal('images/2021/30.jpg')">
+                <img src="images\2021\30.jpg" alt="Проект 2021-30">
+            </div>
+			<div class="project" onclick="openModal('images/2021/31.png')">
+                <img src="images\2021\31.png" alt="Проект 2021-31">
+            </div>
+			<div class="project" onclick="openModal('images/2021/32.png')">
+                <img src="images\2021\32.png" alt="Проект 2021-32">
+            </div>
+			<div class="project" onclick="openModal('images/2021/33.png')">
+                <img src="images\2021\33.png" alt="Проект 2021-33">
+            </div>
+			<div class="project" onclick="openModal('images/2021/34.png')">
+                <img src="images\2021\34.png" alt="Проект 2021-34">
+            </div>
+			<div class="project" onclick="openModal('images/2021/35.png')">
+                <img src="images\2021\35.png" alt="Проект 2021-35">
+            </div>
+			<div class="project" onclick="openModal('images/2021/36.png')">
+                <img src="images\2021\36.png" alt="Проект 2021-36">
+            </div>
+			<div class="project" onclick="openModal('images/2021/38.png')">
+                <img src="images\2021\38.png" alt="Проект 2021-38">
+            </div>
+			<div class="project" onclick="openModal('images/2021/37.png')">
+                <img src="images\2021\37.png" alt="Проект 2021-37">
+            </div>
+			<div class="project" onclick="openModal('images/2021/39.png')">
+                <img src="images\2021\39.png" alt="Проект 2021-39">
+            </div>
+			<div class="project" onclick="openModal('images/2021/40.png')">
+                <img src="images\2021\40.png" alt="Проект 2021-40">
+            </div>
+			<div class="project" onclick="openModal('images/2021/41.png')">
+                <img src="images\2021\41.png" alt="Проект 2021-41">
+            </div>
+			<div class="project" onclick="openModal('images/2021/42.png')">
+                <img src="images\2021\42.png" alt="Проект 2021-42">
+            </div>
+			<div class="project" onclick="openModal('images/2021/43.png')">
+                <img src="images\2021\43.png" alt="Проект 2021-43">
+            </div>
+			<div class="project" onclick="openModal('images/2021/44.png')">
+                <img src="images\2021\44.png" alt="Проект 2021-44">
+            </div>
+			<div class="project" onclick="openModal('images/2021/45.png')">
+                <img src="images\2021\45.png" alt="Проект 2021-45">
+            </div>
+			<div class="project" onclick="openModal('images/2021/46.png')">
+                <img src="images\2021\46.png" alt="Проект 2021-46">
+            </div>
+			<div class="project" onclick="openModal('images/2021/47.jpg')">
+                <img src="images\2021\47.jpg" alt="Проект 2021-47">
+            </div>
+			<div class="project" onclick="openModal('images/2021/48.png')">
+                <img src="images\2021\48.png" alt="Проект 2021-48">
+            </div>
+			<div class="project" onclick="openModal('images/2021/50.png')">
+                <img src="images\2021\50.png" alt="Проект 2021-50">
+            </div>
+			<div class="project" onclick="openModal('images/2021/49.png')">
+                <img src="images\2021\49.png" alt="Проект 2021-49">
+            </div>
+			<div class="project" onclick="openModal('images/2021/51.png')">
+                <img src="images\2021\51.png" alt="Проект 2021-51">
+            </div>
+			<div class="project" onclick="openModal('images/2021/52.png')">
+                <img src="images\2021\52.png" alt="Проект 2021-52">
+            </div>
+			<div class="project" onclick="openModal('images/2021/53.png')">
+                <img src="images\2021\53.png" alt="Проект 2021-53">
+            </div>
+			<div class="project" onclick="openModal('images/2021/54.png')">
+                <img src="images\2021\54.png" alt="Проект 2021-54">
+            </div>
+			<div class="project" onclick="openModal('images/2021/55.png')">
+                <img src="images\2021\55.png" alt="Проект 2021-55">
+            </div>
+			<div class="project" onclick="openModal('images/2021/56.png')">
+                <img src="images\2021\56.png" alt="Проект 2021-56">
+            </div>
+			<div class="project" onclick="openModal('images/2021/57.png')">
+                <img src="images\2021\57.png" alt="Проект 2021-57">
+            </div>
+			<div class="project" onclick="openModal('images/2021/58.jpg')">
+                <img src="images\2021\58.jpg" alt="Проект 2021-58">
+            </div>
+			<div class="project" onclick="openModal('images/2021/59.png')">
+                <img src="images\2021\59.png" alt="Проект 2021-59">
+            </div>
+			<div class="project" onclick="openModal('images/2021/60.png')">
+                <img src="images\2021\60.png" alt="Проект 2021-60">
+            </div>
+			<div class="project" onclick="openModal('images/2021/61.png')">
+                <img src="images\2021\61.png" alt="Проект 2021-61">
+            </div>
+			<div class="project" onclick="openModal('images/2021/62.jpg')">
+                <img src="images\2021\62.jpg" alt="Проект 2021-62">
+            </div>
+			<div class="project" onclick="openModal('images/2021/63.png')">
+                <img src="images\2021\63.png" alt="Проект 2021-63">
+            </div>
+			<div class="project" onclick="openModal('images/2021/64.png')">
+                <img src="images\2021\64.png" alt="Проект 2021-64">
+            </div>
+        </div>
+		
+        <div class="projects" id="projects-2020" style="display: none;">
+            <div class="project" onclick="openModal('images/2020/1.png')">
+                <img src="images\2020\1.png" alt="Проект 2020-1">
+            </div>
+			<div class="project" onclick="openModal('images/2020/2.png')">
+                <img src="images\2020\2.png" alt="Проект 2020-2">
+            </div>
+			<div class="project" onclick="openModal('images/2020/3.png')">
+                <img src="images\2020\3.png" alt="Проект 2020-3">
+            </div>
+			<div class="project" onclick="openModal('images/2020/4.png')">
+                <img src="images\2020\4.png" alt="Проект 2020-4">
+            </div>
+			<div class="project" onclick="openModal('images/2020/5.png')">
+                <img src="images\2020\5.png" alt="Проект 2020-5">
+            </div>
+			<div class="project" onclick="openModal('images/2020/6.png')">
+                <img src="images\2020\6.png" alt="Проект 2020-6">
+            </div>
+			<div class="project" onclick="openModal('images/2020/7.png')">
+                <img src="images\2020\7.png" alt="Проект 2020-7">
+            </div>
+        </div>
+		
+    </section>
+    <section class="info">
+       
+    </section>
+	
+	<div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+	
+    <script>
+		document.addEventListener('contextmenu', function(e) {
+			e.preventDefault();
+		});
+		
+        function showProjects(year) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const projectsSections = document.querySelectorAll('.projects');
+            projectsSections.forEach(section => section.style.display = 'none');
+
+            document.getElementById(`projects-${year}`).style.display = 'flex';
+            document.querySelector(`.tab[onclick="showProjects('${year}')"]`).classList.add('active');
+        }
+		
+		 function openModal(imageSrc) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modal-img');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
